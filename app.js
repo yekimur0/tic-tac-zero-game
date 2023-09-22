@@ -39,6 +39,7 @@ class Board {
       this.changeTurn();
       this.addPlayerToSquare(e.target);
       this.checkWinner(e.target);
+      this.checkDraw();
     });
   }
 
@@ -61,6 +62,17 @@ class Board {
     } else {
       target.innerText = '0';
       target.classList.add('Noughts');
+    }
+  }
+
+  checkDraw() {
+    if (
+      this.winCrosses.length + this.winNoughts.length === 9 &&
+      !this.winnerCrosses &&
+      !this.winnerNoughts
+    ) {
+      this.turnText.textContent = 'Draw';
+      this.winnerText.textContent = 'Draw';
     }
   }
 
